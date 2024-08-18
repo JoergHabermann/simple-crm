@@ -1,0 +1,55 @@
+$main-color: #683ab7cb;
+
+@import '../styles.scss';
+
+.mat-drawer-container {
+    height: 100vh;
+}
+
+button {
+    border: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.mat-toolbar-row, .mat-toobar {
+    background-color: $main-color;
+    min-height: 56px;
+    height: 56px;
+}
+
+.menu-icon {
+    background-color: transparent;
+}
+
+.sidenav {
+    width: 300px;
+    
+}
+
+.logo-container {
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    padding: 0px 16px;
+    min-height: 56px;
+    @include flexParams(center,center);
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        padding: 0px 16px;
+        height: 48px;
+        @include flexParams(center,unset);
+        gap: 16px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+    }
+}
