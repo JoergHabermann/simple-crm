@@ -1,6 +1,8 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+$main-color: #683ab7cb;
+
 @mixin flexParams($align,$justify) {
     display: flex;
     align-items: $align;
@@ -9,4 +11,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 * {
     box-sizing: border-box;
+}
+
+.flexcenter {
+  @include flexParams(center,center);
+}
+
+.gap {
+  gap: 16px;
+}
+
+.mr {
+  margin-right: 16px;
+}
+
+.full-width {
+  width: 100%;
 }
