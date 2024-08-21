@@ -1,60 +1,73 @@
-@import '../styles.scss';
+@import "../styles.scss";
 
 .mat-drawer-container {
-    height: 100vh;
+  height: 100vh;
+}
+
+.logo {
+  max-width: 100%;
+  height: 48px;
 }
 
 button {
-    border: none;
-    &:hover {
-        cursor: pointer;
-    }
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.burger {
+  filter: invert(100%) sepia(5%) saturate(18%) hue-rotate(84deg)
+    brightness(105%) contrast(104%);
 }
 
 .mat-toolbar-row {
-    @include flexParams(center,flex-start);
-    gap: 16px;
+  @include flexParams(center, flex-start);
+  gap: 16px;
+  span {
+    color: white;
+  }
 }
 
-.mat-toolbar-row, .mat-toobar {
-    background-color: $main-color;
-    min-height: 56px;
-    height: 56px;
+.mat-toolbar-row,
+.mat-toobar {
+  background-color: $main-color;
+  min-height: 56px;
+  height: 56px;
 }
 
 .menu-icon {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .sidenav {
-    width: 300px;
-    
+  width: 300px;
 }
 
 .logo-container {
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    padding: 0px 16px;
-    min-height: 56px;
-    @include flexParams(center,center);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0px 16px;
+  min-height: 56px;
+  @include flexParams(center, center);
 }
 
 .menu-items {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    li {
-        padding: 0px 16px;
-        height: 48px;
-        @include flexParams(center,unset);
-        gap: 16px;
-        cursor: pointer;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 0px 16px;
+    height: 48px;
+    @include flexParams(center, unset);
+    gap: 16px;
+    cursor: pointer;
 
-        &:hover {
-            background-color: rgba(0,0,0,0.06);
-        }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
     }
+  }
 }
 
 .router-container {
-    padding: 16px;
+  padding: 16px 56px;
 }

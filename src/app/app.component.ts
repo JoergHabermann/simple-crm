@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,6 +22,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule
+    
     
   ],
   templateUrl: './app.component.html',
