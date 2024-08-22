@@ -7,18 +7,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { User } from '../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
-import { Firestore,query,onSnapshot } from '@angular/fire/firestore';
+import { Firestore, query, onSnapshot } from '@angular/fire/firestore';
 import { collection } from 'firebase/firestore';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule, MatTooltipModule, MatCardModule, CommonModule],
+  imports: [
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatCardModule,
+    CommonModule,
+    RouterLink
+  ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
 export class UserComponent implements OnInit {
-  userData : Array<User> = [];
+  userData: User[] = [];
   unsubusers;
 
   constructor(public dialog: MatDialog, private firestore: Firestore) {
@@ -26,19 +34,30 @@ export class UserComponent implements OnInit {
   }
 
   unsubUsers() {
-    const q = query(collection(this.firestore,'users'));
-    return onSnapshot(q, (list:any) => {
-      console.log('Received changes from DB', list);
+    const q = query(collection(this.firestore, 'users'));
+    return onSnapshot(q, (list: any) => {
       this.userData = [];
-      list.forEach((element:any) => {
-        this.userData.push(element.data());
+      list.forEach((element: any) => {
+        this.userData.push(this.setUserObject(element.data(), element.id));
       });
+      console.log('Received changes from DB', this.userData);
     });
   }
-  
 
-  ngOnInit() {   
+  setUserObject(obj: any, id: string) {
+    return {
+      id: id,
+      firstName: obj.firstName || '',
+      lastName: obj.lastName || '',
+      email: obj.email || '',
+      birthDate: obj.birthDate || '',
+      street: obj.street || '',
+      zipCode: obj.zipCode || '',
+      city: obj.city || '',
+    };
   }
+
+  ngOnInit() {}
 
   ngonDestroy() {
     this.unsubUsers();

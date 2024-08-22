@@ -45,7 +45,7 @@ export class DialogAddUserComponent {
     this.loading = true;
         
 
-    addDoc(collection(this.firestore, 'users'), this.user.toJSON())
+    addDoc(collection(this.firestore, 'users'), this.getCleanJson(this.user))
       .catch((err) => {
         console.error(err);
       })
@@ -55,4 +55,17 @@ export class DialogAddUserComponent {
         this.dialogRef.close();
       });
   }
+
+  getCleanJson(obj:User):{} {
+    return {
+      firstName: obj.firstName || '',
+      lastName: obj.lastName || '',
+      email: obj.email || '',
+      birthDate: obj.birthDate || '',
+      street: obj.street || '',
+      zipCode: obj.zipCode || '',
+      city: obj.city || ''
+    }
+  }
+
 }
