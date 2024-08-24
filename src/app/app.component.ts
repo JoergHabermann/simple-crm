@@ -8,6 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 
+import { ɵBrowserAnimationBuilder } from '@angular/animations';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -21,7 +25,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     RouterLink,
     MatButtonModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    
+    
     
     
   ],
@@ -29,5 +35,5 @@ import {MatDialogModule} from '@angular/material/dialog';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'simple-crm';
+
 }
