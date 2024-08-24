@@ -10,7 +10,7 @@ import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -24,8 +24,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatNativeDateModule,
     FormsModule,
     MatProgressBarModule,
-    NgIf
-    
+    NgIf,
   ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
@@ -35,7 +34,11 @@ export class DialogAddUserComponent {
   birthDate: Date = new Date();
   loading: boolean = false;
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>,private firestore: Firestore) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    private firestore: Firestore,
+    private sharedService: SharedService
+  ) {}
 
   onNoClick() {}
 
@@ -43,9 +46,8 @@ export class DialogAddUserComponent {
     this.user.birthDate = this.birthDate.getTime();
     console.log(this.user);
     this.loading = true;
-        
 
-    addDoc(collection(this.firestore, 'users'), this.getCleanJson(this.user))
+    addDoc(collection(this.firestore, 'users'), this.sharedService.getCleanJson(this.user))
       .catch((err) => {
         console.error(err);
       })
@@ -55,17 +57,4 @@ export class DialogAddUserComponent {
         this.dialogRef.close();
       });
   }
-
-  getCleanJson(obj:User):{} {
-    return {
-      firstName: obj.firstName || '',
-      lastName: obj.lastName || '',
-      email: obj.email || '',
-      birthDate: obj.birthDate || '',
-      street: obj.street || '',
-      zipCode: obj.zipCode || '',
-      city: obj.city || ''
-    }
-  }
-
 }

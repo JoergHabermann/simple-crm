@@ -9,6 +9,7 @@ export class SharedService {
   unsubusers;
   userID: string = '';
   userData: User[] = [];
+  selectedUser: User = new User();
   
   constructor(private firestore: Firestore) { 
     this.unsubusers = this.unsubUsers();
@@ -36,6 +37,18 @@ export class SharedService {
       zipCode: obj.zipCode || '',
       city: obj.city || '',
     };
+  }
+
+  getCleanJson(obj:User):{} {
+    return {
+      firstName: obj.firstName || '',
+      lastName: obj.lastName || '',
+      email: obj.email || '',
+      birthDate: obj.birthDate || '',
+      street: obj.street || '',
+      zipCode: obj.zipCode || '',
+      city: obj.city || ''
+    }
   }
 
   ngonDestroy() {
